@@ -30,9 +30,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float mouseSensivity;
     [SerializeField] private float jumpPower;
     [SerializeField] private float runSpeed = 12f;
+    [SerializeField] private float adsSpeed = 2f;
     [SerializeField] private bool invertX;
     [SerializeField] private bool invertY;
-    [SerializeField] private float adsSpeed = 2f;
 
     private Vector3 _moveInput;
     private bool _canJump;
@@ -56,8 +56,10 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        
-        Movement();
+        if (!UIController.Instance.pauseScreen.activeInHierarchy)
+        {
+            Movement();
+        }
     }
 
     private void Movement()
@@ -149,7 +151,6 @@ public class PlayerController : MonoBehaviour
                 firePoint.LookAt(cameraTransform.position + (cameraTransform.forward * 30f));
             }
             
-            // Instantiate(bullet, firePoint.position, firePoint.rotation);
             FireShot();
         }
     }
@@ -192,11 +193,13 @@ public class PlayerController : MonoBehaviour
             {
                 _moveInput.y = jumpPower;
                 _canDoubleJump = true;
+                AudioManager.Instance.PlaySFX(8);
             }
             else if (_canDoubleJump)
             {
                 _moveInput.y = jumpPower;
                 _canDoubleJump = false;
+                AudioManager.Instance.PlaySFX(8);
             }
         }
     }
@@ -237,7 +240,6 @@ public class PlayerController : MonoBehaviour
                 }
             }
         } 
-
         if (gunUnlocked)
         {
             currentGun = allGuns.Count - 2;

@@ -20,7 +20,10 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            PauseUnpause();
+        }
     }
 
     public void PlayerDied()
@@ -28,10 +31,28 @@ public class GameManager : MonoBehaviour
         StartCoroutine(PlayerDiedCo());
     }
 
-    public IEnumerator PlayerDiedCo()
+    private IEnumerator PlayerDiedCo()
     {
         yield return new WaitForSeconds(waitAfterDying);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
+    }
+
+    public void PauseUnpause()
+    {
+        if (UIController.Instance.pauseScreen.activeInHierarchy)
+        {
+           UIController.Instance.pauseScreen.SetActive(false);
+           Cursor.lockState = CursorLockMode.Locked;
+
+           Time.timeScale = 1;
+        }
+        else
+        {
+            UIController.Instance.pauseScreen.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
+
+            Time.timeScale = 0;
+        }
     }
 }

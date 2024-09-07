@@ -11,7 +11,8 @@ public class UIController : MonoBehaviour
     public TextMeshProUGUI ammoText;
     public Image damageEffect;
     public float damageAlpha = .25f;
-    public float damageFadeSpeed = 2f; 
+    public float damageFadeSpeed = 2f;
+    public GameObject pauseScreen;
     private void Awake()
     {
         Instance = this;
