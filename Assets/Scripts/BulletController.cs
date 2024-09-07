@@ -8,6 +8,7 @@ public class BulletController : MonoBehaviour
     [SerializeField] private GameObject impactEffect;
     
     
+    
     [Header("Values")]
     [SerializeField] private float moveSpeed;
     [SerializeField] private float lifeTime;

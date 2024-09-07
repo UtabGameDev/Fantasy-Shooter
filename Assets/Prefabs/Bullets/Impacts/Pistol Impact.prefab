@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3696031605673972618}
   - component: {fileID: 6473267440915504754}
   m_Layer: 0
-  m_Name: LaserImpactEffect
+  m_Name: Pistol Impact
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4835,7 +4835,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6c2749f9c3801194f90a566b49c858e3, type: 2}
+  - {fileID: 2100000, guid: a8f26be6486b9394f92545b188e8ec18, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
