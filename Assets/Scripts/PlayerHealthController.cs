@@ -34,7 +34,7 @@ public class PlayerHealthController : MonoBehaviour
     public void DamagePlayer(int _damageAmount)
     {
 
-        if (_invincibleCounter <= 0)
+        if (_invincibleCounter <= 0 && !GameManager.Instance.levelEnding)
         {
             AudioManager.Instance.PlaySFX(7);
             

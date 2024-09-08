@@ -38,6 +38,8 @@ public class PlayerController : MonoBehaviour
     private bool _canJump;
     private bool _canDoubleJump;
     private Vector3 _gunStartPosition;
+    private float _bounceAmount;
+    private bool _bounce;
 
     private void Awake()
     {
@@ -56,7 +58,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (!UIController.Instance.pauseScreen.activeInHierarchy)
+        if (!UIController.Instance.pauseScreen.activeInHierarchy && !GameManager.Instance.levelEnding)
         {
             Movement();
         }
@@ -185,8 +187,7 @@ public class PlayerController : MonoBehaviour
         {
             _canDoubleJump = true;
         }
-
-        // repeat shots 
+        
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (_canJump)
@@ -201,6 +202,14 @@ public class PlayerController : MonoBehaviour
                 _canDoubleJump = false;
                 AudioManager.Instance.PlaySFX(8);
             }
+        }
+
+        if (_bounce)
+        {
+            _bounce = false;
+            _moveInput.y = _bounceAmount;
+
+            _canDoubleJump = true;
         }
     }
 
@@ -245,5 +254,11 @@ public class PlayerController : MonoBehaviour
             currentGun = allGuns.Count - 2;
             SwitchGun();
         }
+    }
+
+    public void Bounce(float bounceForce)
+    {
+        _bounceAmount = bounceForce;
+        _bounce = true;
     }
 }

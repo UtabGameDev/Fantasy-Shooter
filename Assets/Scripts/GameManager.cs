@@ -1,12 +1,14 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
     [SerializeField] private float waitAfterDying = 2f;
+    [FormerlySerializedAs("evelEnding")] [FormerlySerializedAs("LevelEnding")] [FormerlySerializedAs("ending")] [HideInInspector] public bool levelEnding;
 
     private void Awake()
     {
